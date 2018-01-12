@@ -54,11 +54,17 @@ gulp.task('js', function() {
 
 // Build
 gulp.task('build', ['css', 'js'], function() {
-  // minify html
   log('Minifying HTML...');
   let htmlStream = gulp.src([
     'index.html',
   ])
+  // minify html
+  .pipe(htmlmin({
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+    removeAttributeQuotes: true,
+    removeComments: true,
+  }))
   // inline critical path CSS
   .pipe(inlineSource())
   .pipe(gulp.dest('build/'));
@@ -89,4 +95,4 @@ gulp.task('build', ['css', 'js'], function() {
 });
 
 // Default
-gulp.task('default', ['css', 'js']);
+gulp.task('default', ['build']);

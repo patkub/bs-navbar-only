@@ -2,6 +2,30 @@
 
 > Bootstrap 4 demo with critical path CSS and deferred JS for only navbar functionality.
 
+### How it works
+
+Critical path CSS containing only navbar styles is inlined. The rest of bootstrap's styles are loaded asynchronously by [loadCSS](https://github.com/filamentgroup/loadCSS).
+Only JavaScript necessary for Bootstrap Navbar functionality is included. Bootstrap's navbar JavaScript requires jQuery.
+`jquery.slim.min.js` and the necessary Boostrap JavaScript are loaded with the defer script attribute to instruct the browser to execute the scripts when the page has finished parsing.
+
+The necessary bootstrap Sass for navbar styles:
+
+```
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/transitions";
+@import "node_modules/bootstrap/scss/nav";
+@import "node_modules/bootstrap/scss/navbar";
+@import "node_modules/bootstrap/scss/utilities";
+```
+
+The necessary bootstrap JavaScript for navbar functionality:
+
+```
+node_modules/bootstrap/js/dist/util.js
+node_modules/bootstrap/js/dist/collapse.js
+```
+
 ### Setup
 
 First, install [Node.js](https://nodejs.org/en/download) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
@@ -20,22 +44,24 @@ This command minifies HTML, CSS, and JS and copies dependencies to the `build` d
 yarn run build
 ```
 
-### How it works
+### CSS
 
-The necessary bootstrap Sass for navbar styles:
+This command compiles SASS and runs the CSS through:
+1) [PurifyCSS](https://github.com/purifycss/purifycss) to remove any unused CSS.
+2) [gulp-strip-css-comments](https://github.com/sindresorhus/gulp-strip-css-comments) to remove comments.
+3) [gulp-clean-css](https://github.com/scniro/gulp-clean-css) to optimize and minify CSS.
 
+The resulting `critical.min.css` is output to the `css` directory.
+
+```sh
+yarn run css
 ```
-@import "node_modules/bootstrap/scss/reboot";
-@import "node_modules/bootstrap/scss/type";
-@import "node_modules/bootstrap/scss/transitions";
-@import "node_modules/bootstrap/scss/nav";
-@import "node_modules/bootstrap/scss/navbar";
-@import "node_modules/bootstrap/scss/utilities";
-```
 
-The necessary bootstrap JavaScript for navbar functionality:
+### JS
 
-```
-node_modules/bootstrap/js/dist/util.js
-node_modules/bootstrap/js/dist/collapse.js
+This command concatenates the necessary navbar JavaScript and minfies it with [gulp-uglifyes](https://github.com/duan602728596/gulp-uglifyes).
+The resulting `deferred.min.js` is output to the `js` directory.
+
+```sh
+yarn run js
 ```

@@ -27,7 +27,9 @@
     "merge-stream": "^1.0.1"
   },
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "css": "gulp css",
+    "js": "gulp js"
   },
   "babel": {
     "only": "gulpfile.babel.js",
