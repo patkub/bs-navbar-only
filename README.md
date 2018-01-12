@@ -19,3 +19,23 @@ This command minifies HTML, CSS, and JS and copies dependencies to the `build` d
 ```sh
 yarn run build
 ```
+
+### How it works
+
+The necessary bootstrap Sass for navbar styles:
+
+```
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/transitions";
+@import "node_modules/bootstrap/scss/nav";
+@import "node_modules/bootstrap/scss/navbar";
+@import "node_modules/bootstrap/scss/utilities";
+```
+
+The necessary bootstrap JavaScript for navbar functionality:
+
+```
+node_modules/bootstrap/js/dist/util.js
+node_modules/bootstrap/js/dist/collapse.js
+```
