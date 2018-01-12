@@ -1,0 +1,21 @@
+/**
+ * Critical Path CSS
+ *
+ * bootstrap/scss v4.0.0-beta (https://getbootstrap/scss.com)
+ * Copyright 2011-2017 The bootstrap/scss Authors
+ * Copyright 2011-2017 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/scss/blob/master/LICENSE)
+ */
+
+// Core functions, variables and mixins
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Core CSS
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/utilities";
