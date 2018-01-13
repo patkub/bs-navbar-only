@@ -1,4 +1,4 @@
-# Boostrap Navbar Only
+# Bootstrap Navbar Only
 
 > Bootstrap 4 demo with critical path CSS and deferred JS for only navbar functionality.
 
