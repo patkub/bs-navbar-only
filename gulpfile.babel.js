@@ -2,6 +2,7 @@
 
 // include gulp & tools
 import gulp from 'gulp';
+import gulpif from 'gulp-if';
 import log from 'fancy-log';
 import rename from 'gulp-rename';
 import inlineSource from 'gulp-inline-source';
@@ -23,14 +24,14 @@ gulp.task('css', function() {
   log('Compiling & minifying CSS...');
   return gulp.src('scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(purifyCSS([
+    .pipe(gulpif('critical.css', purifyCSS([
       // Bootstrap JavaScript for Navbar
       'node_modules/bootstrap/js/dist/util.js',
       'node_modules/bootstrap/js/dist/collapse.js',
       
       // Files where Navbar CSS classes are used
       'demo1.html',
-    ]))
+    ])))
     .pipe(stripCSSComments({
       preserve: false,
     }))
