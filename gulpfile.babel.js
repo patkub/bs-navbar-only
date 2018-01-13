@@ -61,9 +61,7 @@ gulp.task('js', function() {
 gulp.task('build', ['css', 'js'], function() {
   log('Minifying HTML...');
   let htmlStream = gulp.src([
-    'demo1.html',
-    'demo2.html',
-    'demo3.html',
+    'demo?.html',
   ])
   // minify html
   .pipe(htmlmin({
