@@ -24,7 +24,11 @@ gulp.task('css', function() {
   return gulp.src('scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(purifyCSS([
-      'node_modules/bootstrap/dist/js/bootstrap.min.js',
+      // Bootstrap JavaScript for Navbar
+      'node_modules/bootstrap/js/dist/util.js',
+      'node_modules/bootstrap/js/dist/collapse.js',
+      
+      // Files where Navbar CSS classes are used
       'index.html',
     ]))
     .pipe(stripCSSComments({
