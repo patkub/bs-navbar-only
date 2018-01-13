@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Critical Path CSS -->
+    <link rel="stylesheet" href="css/critical.min.css" inline>
+    
+    <!-- Deferred CSS -->
+    <link rel="preload" href="node_modules/bootstrap/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="node_modules/fg-loadcss/dist/loadCSS.min.js" inline></script>
+    
+    <!-- Deferred JS -->
+    <script defer src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script defer src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <title>Demo 5</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link 2</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <main>
+      <div class="container">
+        <h1>First Paint Times</h1>
+        <output></output>
+      </div>
+    </main>
+    
+    <script>
+      // https://css-tricks.com/paint-timing-api/#article-header-id-2
+      (function() {
+        'use strict';
+        if ("PerformanceObserver" in window) {
+          var observerPromise = new Promise(function(resolve, reject) {
+            var observer = new PerformanceObserver(function(list) {
+              resolve(list);
+            });
+
+            observer.observe({
+              entryTypes: ["paint"]
+            });
+          }).then(function(list) {
+            var entries = list.getEntries();
+            var output = document.querySelector('output');
+            
+            entries.forEach(function(entry) {
+              console.log(entry.name + ": " + entry.startTime);
+              
+              // add entry to <output></output>
+              var para = document.createElement("p");
+              var node = document.createTextNode(entry.name + ": " + entry.startTime  + " ms");
+              para.appendChild(node);
+              output.appendChild(para);
+            });
+          }).catch(function(error) {
+            console.warn(error);
+          });
+        }
+      })();
+    </script>
+    
+  </body>
+</html>
