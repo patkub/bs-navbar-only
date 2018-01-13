@@ -29,7 +29,7 @@ gulp.task('css', function() {
       'node_modules/bootstrap/js/dist/collapse.js',
       
       // Files where Navbar CSS classes are used
-      'index.html',
+      'demo1.html',
     ]))
     .pipe(stripCSSComments({
       preserve: false,
@@ -60,7 +60,9 @@ gulp.task('js', function() {
 gulp.task('build', ['css', 'js'], function() {
   log('Minifying HTML...');
   let htmlStream = gulp.src([
-    'index.html',
+    'demo1.html',
+    'demo2.html',
+    'demo3.html',
   ])
   // minify html
   .pipe(htmlmin({
@@ -91,12 +93,23 @@ gulp.task('build', ['css', 'js'], function() {
   
   // copy dependencies
   log('Copying dependencies...');
-  let dependenciesStream = gulp.src([
+  let jQueryStream = gulp.src([
     'node_modules/jquery/dist/jquery.slim.min.js',
   ])
   .pipe(gulp.dest('build/node_modules/jquery/dist/'));
   
-  return mergeStream(cssStream, jsStream, dependenciesStream);
+  let bootstrapCSSStream = gulp.src([
+    'node_modules/bootstrap/dist/css/bootstrap.min.css',
+  ])
+  .pipe(gulp.dest('build/node_modules/bootstrap/dist/css/'));
+  
+  let bootstrapJStream = gulp.src([
+    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+  ])
+  .pipe(gulp.dest('build/node_modules/bootstrap/dist/js/'));
+  
+  return mergeStream(htmlStream, cssStream, jsStream, jQueryStream, bootstrapCSSStream, bootstrapJStream);
 });
 
 // Default
