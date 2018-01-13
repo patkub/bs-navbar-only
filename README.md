@@ -2,6 +2,10 @@
 
 > Bootstrap 4 demo with critical path CSS and deferred JS for only navbar functionality.
 
+| Demo                                                    | Time to first paint (ms) | Description                                                 |
+| --------------------------------------------------------|:------------------------:|:-----------------------------------------------------------:|
+| [demo1](https://patkub.github.io/bs-navbar-only/demo1/) | 110 ms                   | Inlined critical CSS, deferred CSS, and deferred minimal JS |
+
 ### How it works
 
 Critical path CSS containing only navbar styles is inlined. The rest of bootstrap's styles are loaded asynchronously by [loadCSS](https://github.com/filamentgroup/loadCSS).
