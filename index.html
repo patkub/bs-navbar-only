@@ -39,5 +39,45 @@
         </ul>
       </div>
     </nav>
+    
+    <main>
+      <div class="container">
+        <h1>First Paint Times</h1>
+        <output></output>
+      </div>
+    </main>
+    
+    <script>
+      (function() {
+        'use strict';
+        if ("PerformanceObserver" in window) {
+          var observerPromise = new Promise(function(resolve, reject) {
+            var observer = new PerformanceObserver(function(list) {
+              resolve(list);
+            });
+
+            observer.observe({
+              entryTypes: ["paint"]
+            });
+          }).then(function(list) {
+            var entries = list.getEntries();
+            var output = document.querySelector('output');
+            
+            entries.forEach(function(entry) {
+              console.log(entry.name + ": " + entry.startTime);
+              
+              // add entry to <output></output>
+              var para = document.createElement("p");
+              var node = document.createTextNode(entry.name + ": " + entry.startTime  + " ms");
+              para.appendChild(node);
+              output.appendChild(para);
+            });
+          }).catch(function(error) {
+            console.warn(error);
+          });
+        }
+      })();
+    </script>
+    
   </body>
 </html>

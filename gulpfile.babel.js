@@ -64,6 +64,7 @@ gulp.task('build', ['css', 'js'], function() {
     conservativeCollapse: true,
     removeAttributeQuotes: true,
     removeComments: true,
+    minifyJS: true,
   }))
   // inline critical path CSS
   .pipe(inlineSource())
