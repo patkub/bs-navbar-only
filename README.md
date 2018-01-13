@@ -7,7 +7,7 @@
 | [demo1](https://patkub.github.io/bs-navbar-only/demo1/) | ~110 ms                  | Inlined critical path navbar CSS, deferred the rest of bootstrap's CSS and deferred minimal navbar JS |
 | [demo2](https://patkub.github.io/bs-navbar-only/demo2/) | ~160 ms                  | Render-blocking bootstrap.min.css, and deferred jquery.slim.min.js and bootstrap.bundle.min.js        |
 
-### How it works
+## How it works
 
 Critical path CSS containing only navbar styles is inlined. The rest of bootstrap's styles are loaded asynchronously by [loadCSS](https://github.com/filamentgroup/loadCSS).
 Only JavaScript necessary for Bootstrap Navbar functionality is included. Bootstrap's navbar JavaScript requires jQuery.
@@ -31,7 +31,7 @@ node_modules/bootstrap/js/dist/util.js
 node_modules/bootstrap/js/dist/collapse.js
 ```
 
-### Setup
+## Setup
 
 First, install [Node.js](https://nodejs.org/en/download) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
 
